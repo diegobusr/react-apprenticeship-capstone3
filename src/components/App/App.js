@@ -5,7 +5,7 @@ import Header from '../Header';
 import { localStorageKeys, reducer } from '../../utils/reducer';
 import { GlobalStyle } from '../../global.styles.js';
 import { getStorage } from '../../utils/localstorage';
-import NotFound from '../../pages/notFound';
+import NotFound from '../../pages/notFound/NotFound.page';
 
 export const GlobalContext = React.createContext();
 
