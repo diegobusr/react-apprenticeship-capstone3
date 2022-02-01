@@ -1,6 +1,5 @@
 import React, { useReducer } from 'react';
 import NotesPage from '../../pages/Notes';
-import NotFound from '../../pages/NotFound';
 import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
 import Header from '../Header';
 import { localStorageKeys, reducer } from '../../utils/reducer';
@@ -27,10 +26,7 @@ const App = () => {
             <Route exact path="/:typeOfNotes">
               <NotesPage />
             </Route>
-            <Route exact path="/not-found">
-              <NotFound />
-            </Route>
-            <Redirect to={'/not-found'} />
+            <Redirect to={'/notes'} />
           </Switch>
         </BrowserRouter>
       </GlobalContext.Provider>
