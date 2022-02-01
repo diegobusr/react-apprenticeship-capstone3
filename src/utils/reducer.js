@@ -11,9 +11,15 @@ export const types = {
   CHANGE_NOTE_COLOR: 'CHANGE_NOTE_COLOR',
   EDIT_NOTE: 'EDIT_NOTE',
   ARCHIVE_NOTE: 'ARCHIVE_NOTE',
+  TYPE_OF_NOTES: 'TYPE_OF_NOTES',
 };
 export const reducer = (state, action) => {
   switch (action.type) {
+    case types.TYPE_OF_NOTES:
+      return {
+        ...state,
+        typeOfNotes: action.payload,
+      };
     case types.ADD_NEW_NOTE:
       if (
         state.listOfNotes.filter((note) => {

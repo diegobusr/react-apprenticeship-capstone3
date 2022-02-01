@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { HouseFill } from '@styled-icons/bootstrap/HouseFill';
+import { Note } from '@styled-icons/boxicons-solid/Note';
 import { Link } from 'react-router-dom';
 
 export const CustomLink = styled(Link)`
@@ -9,7 +9,7 @@ export const CustomLink = styled(Link)`
   min-height: 30px;
 `;
 
-export const CustomButton = styled(HouseFill)`
+export const CustomButton = styled(Note)`
   margin-left: 10px;
   color: white;
   min-width: 30px;

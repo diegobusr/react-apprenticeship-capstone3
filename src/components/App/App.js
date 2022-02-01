@@ -14,7 +14,7 @@ const App = () => {
     listOfNotes: getStorage(localStorageKeys.NOTES) || [],
     archivedNotes: getStorage(localStorageKeys.ARCHIVED_NOTES) || [],
     globalNoteColor: '#42255E',
-    noteToEdit: {},
+    typeOfNotes: '',
   });
 
   return (
