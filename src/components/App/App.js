@@ -4,7 +4,6 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from '../Header';
 import { localStorageKeys, reducer } from '../../utils/reducer';
 import { GlobalStyle } from '../../global.styles.js';
-import './App.styles.js';
 import { getStorage } from '../../utils/localstorage';
 import NotFound from '../../pages/NotFound';
 
