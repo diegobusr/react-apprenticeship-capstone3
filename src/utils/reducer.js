@@ -54,18 +54,19 @@ export const reducer = (state, action) => {
       };
       setStorage(localStorageKeys.NOTES, editedState.listOfNotes);
       return editedState;
+
     case types.ARCHIVE_NOTE:
       const { archivedNoteInfo, archivedNoteIndex } = action.payload;
       const modifiedArray = state.listOfNotes.filter((note, index) => {
         return index !== archivedNoteIndex;
       });
 
-      state.archivedNotes.push(archivedNoteInfo);
+      const archivedArray = state.archivedNotes.concat(archivedNoteInfo);
 
       const modifiedState = {
         ...state,
         listOfNotes: modifiedArray,
-        archivedNotes: state.archivedNotes,
+        archivedNotes: archivedArray,
       };
       setStorage(localStorageKeys.NOTES, modifiedState.listOfNotes);
       setStorage(localStorageKeys.ARCHIVED_NOTES, modifiedState.archivedNotes);
