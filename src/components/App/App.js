@@ -1,11 +1,11 @@
 import React, { useReducer } from 'react';
-import NotesPage from '../../pages/Notes';
+import NotesPage from '../../pages/notes/Notes.page';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Header from '../Header';
 import { localStorageKeys, reducer } from '../../utils/reducer';
 import { GlobalStyle } from '../../global.styles.js';
 import { getStorage } from '../../utils/localstorage';
-import NotFound from '../../pages/NotFound';
+import NotFound from '../../pages/notFound';
 
 export const GlobalContext = React.createContext();
 
