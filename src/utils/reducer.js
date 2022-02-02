@@ -12,6 +12,8 @@ export const types = {
   EDIT_NOTE: 'EDIT_NOTE',
   ARCHIVE_NOTE: 'ARCHIVE_NOTE',
   TYPE_OF_NOTES: 'TYPE_OF_NOTES',
+  REMOVE_NOTE: 'REMOVE_NOTE',
+  SET_SEARCH_TEXT: 'SET_SEARCH_TEXT',
 };
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -71,6 +73,36 @@ export const reducer = (state, action) => {
       setStorage(localStorageKeys.NOTES, modifiedState.listOfNotes);
       setStorage(localStorageKeys.ARCHIVED_NOTES, modifiedState.archivedNotes);
       return modifiedState;
+
+    case types.REMOVE_NOTE:
+      const { typeOfNotes, noteInfo } = action.payload;
+      let modifiedNewState = null;
+      if (typeOfNotes === 'notes') {
+        const modifiedArray = state.listOfNotes.filter((note) => {
+          if (note.title !== noteInfo.title) return note;
+        });
+        modifiedNewState = {
+          ...state,
+          listOfNotes: modifiedArray,
+        };
+        setStorage(localStorageKeys.NOTES, modifiedNewState.listOfNotes);
+      } else {
+        const archivedArray = state.archivedNotes.filter((note) => {
+          if (note.title !== noteInfo.title) return note;
+        });
+        modifiedNewState = {
+          ...state,
+          archivedNotes: archivedArray,
+        };
+        setStorage(
+          localStorageKeys.ARCHIVED_NOTES,
+          modifiedNewState.archivedNotes
+        );
+      }
+      return modifiedNewState;
+
+    case types.SET_SEARCH_TEXT:
+      return { ...state, searchText: action.payload };
 
     default:
       return state;

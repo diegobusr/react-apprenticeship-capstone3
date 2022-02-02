@@ -51,3 +51,11 @@ export const ButtonsDiv = styled.div`
   width: 100%;
   justify-content: space-evenly;
 `;
+
+export const DeleteNoteButton = styled.button`
+  color: white;
+  background-color: #e34d3b;
+  border: none;
+  border-radius: 5px;
+  width: 25%;
+`;

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const RightSideDiv = styled.div`
-  width: 20%;
+  width: 70%;
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
