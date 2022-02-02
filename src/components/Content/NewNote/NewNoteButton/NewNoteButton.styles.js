@@ -11,5 +11,5 @@ export const AddNoteButton = styled.button`
   background-color: ${({ disabled }) => (disabled ? 'gray' : 'green')};
   border: none;
   border-radius: 5px;
-  width: 20%;
+  width: 30%;
 `;
