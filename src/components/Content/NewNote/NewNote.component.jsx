@@ -4,7 +4,7 @@ import NewNoteText from './NewNoteText';
 import NewNoteColor from './NewNoteColor';
 import NewNoteButton from './NewNoteButton';
 import { GlobalContext } from '../../App/App';
-import { NewNoteDiv, CloseDivButton } from './NewNote.styles';
+import { NewNoteDiv, CloseDivButton, NoteDiv } from './NewNote.styles';
 import { ButtonsDiv } from '../ListNotes/Note/Note.styles';
 
 const NewNote = ({ onClose }) => {
@@ -22,15 +22,17 @@ const NewNote = ({ onClose }) => {
   };
 
   return (
-    <NewNoteDiv onKeyDown={handleKeyDown} color={globalNoteColor}>
-      <NewNoteTitle setNoteInfo={setNoteInfo} />
-      <NewNoteText text={text} setNoteInfo={setNoteInfo} />
-      <NewNoteColor color={color} setNoteInfo={setNoteInfo} />
-      <ButtonsDiv>
-        <CloseDivButton onClick={onClose}>Close</CloseDivButton>
-        <NewNoteButton noteInfo={noteInfo} />
-      </ButtonsDiv>
-    </NewNoteDiv>
+    <NoteDiv>
+      <NewNoteDiv onKeyDown={handleKeyDown} color={globalNoteColor}>
+        <NewNoteTitle setNoteInfo={setNoteInfo} />
+        <NewNoteText text={text} setNoteInfo={setNoteInfo} />
+        <NewNoteColor color={color} setNoteInfo={setNoteInfo} />
+        <ButtonsDiv>
+          <CloseDivButton onClick={onClose}>Close</CloseDivButton>
+          <NewNoteButton noteInfo={noteInfo} />
+        </ButtonsDiv>
+      </NewNoteDiv>
+    </NoteDiv>
   );
 };
 

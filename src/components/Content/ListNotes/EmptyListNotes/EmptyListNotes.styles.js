@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const EmptyDiv = styled.div`
+  display: flex;
+  width: 100%;
+  justify-content: center;
+`;
+
 export const EmptyNotesDiv = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -7,9 +13,10 @@ export const EmptyNotesDiv = styled.div`
   background-color: #42245e;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   border-radius: 5px;
-  width: 100%;
+  width: 80%;
   margin: 15px;
   padding: 5px 10px 5px 10px;
+  justify-content: center;
   align-items: center;
 
   h3 {

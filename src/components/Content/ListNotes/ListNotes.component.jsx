@@ -1,30 +1,27 @@
 import React, { useContext } from 'react';
 import Note from './Note';
-import EmptyListNotes from './EmptyListNotes';
-import { ListDiv, NoNotesDiv } from './ListNotes.styles';
+import { filterNotes } from '../../../utils/filterNotes';
 import { GlobalContext } from '../../App/App';
+import EmptyListNotes from './EmptyListNotes';
+import { ListDiv } from './ListNotes.styles';
 
 const ListNotes = ({ notes }) => {
   const { searchText } = useContext(GlobalContext).appContext;
-  if (notes.length === 0) {
+  const filteredNotes = filterNotes(notes, searchText);
+
+  if (filteredNotes.length === 0) {
     return (
-      <NoNotesDiv>
-        <EmptyListNotes />
-      </NoNotesDiv>
+      <EmptyListNotes>
+        There are no notes with that title. Try another search
+      </EmptyListNotes>
     );
   }
 
   return (
     <ListDiv>
-      {notes
-        .filter((note) => {
-          if (searchText === '') return note;
-          else if (note.title.toLowerCase().includes(searchText.toLowerCase()))
-            return note;
-        })
-        .map((note, index) => {
-          return <Note noteInfo={note} noteIndex={index} key={note.title} />;
-        })}
+      {filteredNotes.map((note, index) => {
+        return <Note noteInfo={note} noteIndex={index} key={note.title} />;
+      })}
     </ListDiv>
   );
 };

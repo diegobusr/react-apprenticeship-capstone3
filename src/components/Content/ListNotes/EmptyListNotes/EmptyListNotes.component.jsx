@@ -1,19 +1,13 @@
-import React, { useContext } from 'react';
-import { GlobalContext } from '../../../App/App';
-import { EmptyNotesDiv } from './EmptyListNotes.styles';
+import React from 'react';
+import { EmptyNotesDiv, EmptyDiv } from './EmptyListNotes.styles';
 
-const EmptyListNotes = () => {
-  const { typeOfNotes } = useContext(GlobalContext).appContext;
+const EmptyListNotes = ({ children }) => {
   return (
-    <EmptyNotesDiv>
-      {typeOfNotes === 'notes' && (
-        <h3>
-          There are no notes; please create a new one using the creation note
-          input.
-        </h3>
-      )}
-      {typeOfNotes === 'archived' && <h3>There are no archived notes</h3>}
-    </EmptyNotesDiv>
+    <EmptyDiv>
+      <EmptyNotesDiv>
+        <h3> {children} </h3>
+      </EmptyNotesDiv>
+    </EmptyDiv>
   );
 };
 

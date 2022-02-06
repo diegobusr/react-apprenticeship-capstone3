@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Note } from '@styled-icons/boxicons-solid/Note';
+import { LogOut } from '@styled-icons/boxicons-solid/LogOut';
 import { Link } from 'react-router-dom';
 
 export const CustomLink = styled(Link)`
@@ -7,11 +7,17 @@ export const CustomLink = styled(Link)`
   color: white;
   min-width: 30px;
   min-height: 30px;
+  align-items: center;
 `;
 
-export const CustomButton = styled(Note)`
+export const CustomButton = styled(LogOut)`
   margin-left: 10px;
   color: white;
   min-width: 30px;
   min-height: 30px;
+`;
+
+export const ContainerDiv = styled.div`
+  display: flex;
+  align-items: flex-end;
 `;

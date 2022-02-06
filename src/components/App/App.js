@@ -1,7 +1,9 @@
 import React, { useReducer } from 'react';
-import NotesPage from '../../pages/Notes';
-import { BrowserRouter, Switch, Route, Redirect } from 'react-router-dom';
-import Header from '../Header';
+import LoginPage from '../../pages/Login';
+import PrivateRouter from '../PrivateRouter';
+import { BrowserRouter, Switch } from 'react-router-dom';
+import { Private } from '../Private/Private.component';
+import { Public } from '../Public/Public.component';
 import { localStorageKeys, reducer } from '../../utils/reducer';
 import { getStorage } from '../../utils/localstorage';
 import { GlobalStyle } from '../../global.styles.js';
@@ -13,21 +15,29 @@ const App = () => {
     listOfNotes: getStorage(localStorageKeys.NOTES) || [],
     archivedNotes: getStorage(localStorageKeys.ARCHIVED_NOTES) || [],
     globalNoteColor: '#42255E',
-    typeOfNotes: '',
     searchText: '',
+    isAuthenticated: false,
   });
+
+  const { isAuthenticated } = appContext;
 
   return (
     <>
       <GlobalContext.Provider value={{ appContext, setAppContext }}>
         <GlobalStyle />
         <BrowserRouter>
-          <Header />
           <Switch>
-            <Route exact path="/:typeOfNotes">
-              <NotesPage />
-            </Route>
-            <Redirect to={'/notes'} />
+            <Public
+              exact
+              path="/login"
+              isAuthenticated={isAuthenticated}
+              component={LoginPage}
+            />
+            <Private
+              path="/"
+              isAuthenticated={isAuthenticated}
+              component={PrivateRouter}
+            />
           </Switch>
         </BrowserRouter>
       </GlobalContext.Provider>

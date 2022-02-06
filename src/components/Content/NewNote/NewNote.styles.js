@@ -1,5 +1,11 @@
 import styled from 'styled-components';
 
+export const NoteDiv = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100%;
+`;
+
 export const NewNoteDiv = styled.div`
   display: flex;
   flex-wrap: wrap;

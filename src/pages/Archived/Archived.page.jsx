@@ -3,19 +3,14 @@ import { GlobalContext } from '../../components/App/App';
 import Content from '../../components/Content';
 import ListNotes from '../../components/Content/ListNotes';
 import EmptyListNotes from '../../components/Content/ListNotes/EmptyListNotes';
-import { NotesDiv } from './Notes.styles';
+import { NotesDiv } from './Archived.styles';
 
-const NotesPage = () => {
-  const { listOfNotes: notes } = useContext(GlobalContext).appContext;
+const ArchivedPage = () => {
+  const { archivedNotes: notes } = useContext(GlobalContext).appContext;
 
   const isThereNotes = Boolean(notes.length);
   if (!isThereNotes) {
-    return (
-      <EmptyListNotes>
-        There are no notes; please create a new one using the creation note
-        input
-      </EmptyListNotes>
-    );
+    return <EmptyListNotes>There are no archived notes</EmptyListNotes>;
   }
 
   return (
@@ -27,4 +22,4 @@ const NotesPage = () => {
   );
 };
 
-export default NotesPage;
+export default ArchivedPage;

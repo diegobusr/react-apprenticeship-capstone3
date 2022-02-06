@@ -14,9 +14,15 @@ export const types = {
   TYPE_OF_NOTES: 'TYPE_OF_NOTES',
   REMOVE_NOTE: 'REMOVE_NOTE',
   SET_SEARCH_TEXT: 'SET_SEARCH_TEXT',
+  IS_AUTHENTICATED: 'IS_AUTHENTICATED',
 };
 export const reducer = (state, action) => {
   switch (action.type) {
+    case types.IS_AUTHENTICATED:
+      return {
+        ...state,
+        isAuthenticated: action.payload,
+      };
     case types.TYPE_OF_NOTES:
       return {
         ...state,
@@ -58,26 +64,40 @@ export const reducer = (state, action) => {
       return editedState;
 
     case types.ARCHIVE_NOTE:
-      const { archivedNoteInfo, archivedNoteIndex } = action.payload;
-      const modifiedArray = state.listOfNotes.filter((note, index) => {
-        return index !== archivedNoteIndex;
-      });
+      const { archivedNoteInfo, typeOfNotes: typeOfArchivedNotes } =
+        action.payload;
 
-      const archivedArray = state.archivedNotes.concat(archivedNoteInfo);
+      let modifiedState,
+        modifiedArray,
+        archivedArray = null;
 
-      const modifiedState = {
+      if (typeOfArchivedNotes === '/notes') {
+        modifiedArray = state.listOfNotes.filter((note) => {
+          return note.title !== archivedNoteInfo.title;
+        });
+        archivedArray = state.archivedNotes.concat(archivedNoteInfo);
+      } else {
+        archivedArray = state.archivedNotes.filter((note) => {
+          return note.title !== archivedNoteInfo.title;
+        });
+        modifiedArray = state.listOfNotes.concat(archivedNoteInfo);
+      }
+
+      modifiedState = {
         ...state,
         listOfNotes: modifiedArray,
         archivedNotes: archivedArray,
       };
+
       setStorage(localStorageKeys.NOTES, modifiedState.listOfNotes);
       setStorage(localStorageKeys.ARCHIVED_NOTES, modifiedState.archivedNotes);
+
       return modifiedState;
 
     case types.REMOVE_NOTE:
       const { typeOfNotes, noteInfo } = action.payload;
       let modifiedNewState = null;
-      if (typeOfNotes === 'notes') {
+      if (typeOfNotes === '/notes') {
         const modifiedArray = state.listOfNotes.filter((note) => {
           if (note.title !== noteInfo.title) return note;
         });

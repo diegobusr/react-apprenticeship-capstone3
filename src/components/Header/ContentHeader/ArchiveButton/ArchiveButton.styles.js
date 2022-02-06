@@ -8,6 +8,7 @@ export const CustomLink = styled(Link)`
   color: white;
   min-width: 30px;
   min-height: 30px;
+  align-items: center;
 `;
 
 export const CustomButton = styled(ArchiveFill)`

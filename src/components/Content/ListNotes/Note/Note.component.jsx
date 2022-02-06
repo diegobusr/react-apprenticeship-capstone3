@@ -3,6 +3,7 @@ import { types } from '../../../../utils/reducer';
 import { GlobalContext } from '../../../App/App';
 import ArchivedNoteButton from './ArchivedNoteButton';
 import EditNoteButton from './EditNoteButton';
+import { useLocation } from 'react-router-dom';
 import {
   NoteView,
   TitleSpan,
@@ -13,9 +14,8 @@ import {
 
 const Note = ({ noteInfo, noteIndex }) => {
   const { title, text, color } = noteInfo;
-  const { typeOfNotes } = useContext(GlobalContext).appContext;
   const { setAppContext } = useContext(GlobalContext);
-  const isNotArchivedPage = Boolean(typeOfNotes !== 'archived');
+  const typeOfNotes = useLocation().pathname;
   const handleDeleteNote = () => {
     setAppContext({
       type: types.REMOVE_NOTE,
@@ -31,12 +31,8 @@ const Note = ({ noteInfo, noteIndex }) => {
       </NoteText>
       <ButtonsDiv>
         <DeleteNoteButton onClick={handleDeleteNote}>Delete</DeleteNoteButton>
-        {isNotArchivedPage && (
-          <ArchivedNoteButton noteInfo={noteInfo} noteIndex={noteIndex} />
-        )}
-        {isNotArchivedPage && (
-          <EditNoteButton noteInfo={noteInfo} noteIndex={noteIndex} />
-        )}
+        <ArchivedNoteButton noteInfo={noteInfo} typeOfNotes={typeOfNotes} />
+        <EditNoteButton noteInfo={noteInfo} noteIndex={noteIndex} />
       </ButtonsDiv>
     </NoteView>
   );

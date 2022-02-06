@@ -9,7 +9,12 @@ const SearchBar = () => {
 
   const onChangeInput = (e) => {
     setInputValue(e.target.value);
-    setAppContext({ type: types.SET_SEARCH_TEXT, payload: e.target.value });
+  };
+
+  const onKeyEnterPress = (e) => {
+    setInputValue(e.target.value);
+    if (e.key === 'Enter')
+      setAppContext({ type: types.SET_SEARCH_TEXT, payload: e.target.value });
   };
 
   return (
@@ -17,7 +22,8 @@ const SearchBar = () => {
       value={inputValue}
       type="text"
       placeholder="Search.."
-      onChange={(e) => onChangeInput(e)}
+      onChange={onChangeInput}
+      onKeyPress={onKeyEnterPress}
     />
   );
 };
